@@ -93,8 +93,8 @@ namespace BulkyWeb.Controllers
             {
                 return NotFound();
             }
-         _db.Categories.Remove(obj);
-         _db.SaveChanges();
+            _db.Categories.Remove(obj);
+            _db.SaveChanges();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index", "Category");
            

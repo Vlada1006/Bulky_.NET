@@ -1,0 +1,24 @@
+﻿@model Car
+<input asp-for="CarId" hidden />
+<form method="post">
+    <div class="p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary"> Delete Category </h2>
+            <hr />
+        </div>
+
+        <div class="mb-3 row p-1">
+            <label asp-for="CarName" class="p-0"></label>
+            <input asp-for="CarName" disabled class="form-control" />
+        </div>
+        <div class="mb-3 row p-1 ">
+            <label asp-for="CarColor" class="p-0"></label>
+            <input asp-for="CarColor" disabled class="form-control" />
+        </div>
+
+        <button type="submit" class="btn btn-danger" style="width:150px"> Delete</button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-outline border form-control" style="width:200px"> Back to list</a>
+
+    </div>
+</form>
+
