@@ -1,24 +1,26 @@
 ﻿using BulkyWeb.Data;
 using BulkyWeb.Models;
+using BulkyWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 
 
-namespace BulkyWeb.Controllers
+namespace BulkyWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CarController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CarController(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public CarController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
 
         public IActionResult Index()
         {
-            var objCarList = _db.Cars.ToList();
+            var objCarList = _unitOfWork.Car.GetAll().ToList();
             return View(objCarList);
         }
-        
+
         public IActionResult Create()
         {
             return View();
@@ -29,8 +31,8 @@ namespace BulkyWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Cars.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Car.Add(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category created successfully";
                 return RedirectToAction("Index", "Car");
             }
@@ -39,11 +41,11 @@ namespace BulkyWeb.Controllers
 
         public IActionResult Edit(int? carId)
         {
-            if(carId == null || carId == 0)
+            if (carId == null || carId == 0)
             {
                 return NotFound();
             }
-            Car? carFromDb = _db.Cars.Find(carId);
+            Car? carFromDb = _unitOfWork.Car.Get(u => u.CarId == carId);
             if (carFromDb == null)
             {
                 return NotFound();
@@ -56,8 +58,8 @@ namespace BulkyWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Cars.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Car.Update(obj);
+                _unitOfWork.Save();
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index", "Car");
             }
@@ -70,7 +72,7 @@ namespace BulkyWeb.Controllers
             {
                 return NotFound();
             }
-            Car? carFromDb = _db.Cars.Find(carId);
+            Car? carFromDb = _unitOfWork.Car.Get(u => u.CarId == carId);
             if (carFromDb == null)
             {
                 return NotFound();
@@ -81,19 +83,19 @@ namespace BulkyWeb.Controllers
         [HttpPost, ActionName("Delete")]
         public IActionResult DeletePOST(int? carId)
         {
-            Car? obj = _db.Cars.Find(carId);
+            Car? obj = _unitOfWork.Car.Get(u => u.CarId == carId);
 
-            if(obj == null)
+            if (obj == null)
             {
                 return NotFound();
             }
 
-            _db.Cars.Remove(obj);
-            _db.SaveChanges();
+            _unitOfWork.Car.Remove(obj);
+            _unitOfWork.Save();
             TempData["success"] = "Category deleted successfully";
             return RedirectToAction("Index", "Car");
 
-           
+
         }
 
 
