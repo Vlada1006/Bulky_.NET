@@ -3,7 +3,7 @@
     public interface IUnitOfWork
     {
         ICategoryRepository Category { get; }
-        ICarRepository Car { get; }
+        IProductRepository Product { get; }
 
         void Save();
     }

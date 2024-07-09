@@ -4,17 +4,17 @@ using BulkyWeb.Repository.IRepository;
 
 namespace BulkyWeb.Repository
 {
-    public class CarRepository : Repository<Car>, ICarRepository
+    public class ProductRepository : Repository<Product>, IProductRepository 
     {
         private ApplicationDbContext _db;
-        public CarRepository(ApplicationDbContext db) : base(db)
+        public ProductRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
 
-        public void Update(Car obj)
+        public void Update(Product obj)
         {
-            _db.Cars.Update(obj);
+            _db.Products.Update(obj);
         }
     }
 }

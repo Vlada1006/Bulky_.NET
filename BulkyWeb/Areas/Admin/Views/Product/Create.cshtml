@@ -1,0 +1,48 @@
+﻿@model Product
+<form method="post">
+<div class="p-3 mt-4">
+    <div class="row pb-2">
+            <h2 class="text-primary text-center"> Create Product </h2>
+        <hr />
+    </div>
+
+    <div>
+            <label asp-for="Title" class="p-0"></label>
+            <input asp-for="Title" class="form-control mb-1 border-2 shadow" />
+    </div>
+    <div>
+            <label asp-for="Author" class="p-0 mt-4"></label>
+            <input asp-for="Author" class="form-control mb-3 border-2 shadow" />
+    </div>
+        <div>
+            <label asp-for="Description" class="p-0"></label>
+            <input asp-for="Description" class="form-control mb-1 border-2 shadow" />
+        </div>
+        <div>
+            <label asp-for="ISBN" class="p-0"></label>
+            <input asp-for="ISBN" class="form-control mb-1 border-2 shadow" />
+        </div>
+        <div>
+            <label asp-for="ListPrice" class="p-0"></label>
+            <input asp-for="ListPrice" class="form-control mb-1 border-2 shadow" />
+        </div>
+         <div>
+            <label asp-for="Price" class="p-0"></label>
+            <input asp-for="Price" class="form-control mb-1 border-2 shadow" />
+        </div>
+        <div>
+            <label asp-for="Price50" class="p-0"></label>
+            <input asp-for="Price50" class="form-control mb-1 border-2 shadow" />
+        </div>
+        <div>
+            <label asp-for="Price100" class="p-0"></label>
+            <input asp-for="Price100" class="form-control mb-1 border-2 shadow" />
+        </div>
+    <button type="submit" class="btn btn-primary btn-outline" style="width:150px">Create</button>
+    <a asp-controller="Product" asp-action="Index" class="btn btn-outline border form-control" style="width:200px" >Back To List</a>
+
+
+    </div>
+    
+</form>
+

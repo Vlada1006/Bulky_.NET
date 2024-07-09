@@ -5,7 +5,8 @@ namespace BulkyWeb.Repository.IRepository
     public class UnitOfWork : IUnitOfWork
     {
         public ICategoryRepository Category {  get; private set; }
-        public ICarRepository Car { get; private set; }
+
+        public IProductRepository Product { get; private set; }
 
         private ApplicationDbContext _db;
 
@@ -13,7 +14,7 @@ namespace BulkyWeb.Repository.IRepository
         {
             _db = db;
             Category = new CategoryRepository(_db);
-            Car = new CarRepository(_db);
+            Product = new ProductRepository(_db);
         }
         public void Save()
         {
