@@ -1,4 +1,4 @@
-﻿
+﻿﻿
 @model Category
 <input asp-for="Id" hidden />
 <form method="post">
@@ -19,8 +19,8 @@
             <span asp-validation-for="DisplayOrder" class="text-danger"></span>
         </div>
 
-        <button type="submit" class="btn btn-primary" style="width:150px"> Update</button>
-        <a asp-controller="Category" asp-action="Index" class="btn btn-outline border form-control" style="width:200px"> Back to list</a>
+        <button type="submit" class="btn btn-outline-dark" style="width:150px"> Update</button>
+        <a asp-controller="Category" asp-action="Index" class="btn btn-outline-dark border form-control" style="width:200px"> Back to list</a>
 
     </div>
 </form>
@@ -31,4 +31,3 @@
         <partial name="_ValidationScriptsPartial" />
     }
 }
-

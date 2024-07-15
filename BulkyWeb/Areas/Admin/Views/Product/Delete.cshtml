@@ -9,39 +9,41 @@
 
         <div>
             <label asp-for="Title" class="p-0"></label>
-            <input asp-for="Title" class="form-control mb-1 border-2 shadow" />
+            <input asp-for="Title" disabled class="form-control mb-1 border-2 shadow" />
         </div>
         <div>
             <label asp-for="Author" class="p-0 mt-4"></label>
-            <input asp-for="Author" class="form-control mb-3 border-2 shadow" />
+            <input asp-for="Author" disabled class="form-control mb-3 border-2 shadow" />
         </div>
         <div>
             <label asp-for="Description" class="p-0"></label>
-            <input asp-for="Description" class="form-control mb-1 border-2 shadow" />
+            <input asp-for="Description" disabled class="form-control mb-1 border-2 shadow" />
         </div>
         <div>
             <label asp-for="ISBN" class="p-0"></label>
-            <input asp-for="ISBN" class="form-control mb-1 border-2 shadow" />
+            <input asp-for="ISBN" disabled class="form-control mb-1 border-2 shadow" />
         </div>
         <div>
             <label asp-for="ListPrice" class="p-0"></label>
-            <input asp-for="ListPrice" class="form-control mb-1 border-2 shadow" />
+            <input asp-for="ListPrice" disabled class="form-control mb-1 border-2 shadow" />
         </div>
         <div>
             <label asp-for="Price" class="p-0"></label>
-            <input asp-for="Price" class="form-control mb-1 border-2 shadow" />
+            <input asp-for="Price" disabled class="form-control mb-1 border-2 shadow" />
         </div>
         <div>
             <label asp-for="Price50" class="p-0"></label>
-            <input asp-for="Price50" class="form-control mb-1 border-2 shadow" />
+            <input asp-for="Price50" disabled class="form-control mb-1 border-2 shadow" />
         </div>
         <div>
             <label asp-for="Price100" class="p-0"></label>
-            <input asp-for="Price100" class="form-control mb-1 border-2 shadow" />
+            <input asp-for="Price100" disabled class="form-control mb-1 border-2 shadow" />
         </div>
 
-        <button type="submit" class="btn btn-danger" style="width:150px"> Delete</button>
-        <a asp-controller="Product" asp-action="Index" class="btn btn-outline border form-control" style="width:200px"> Back to list</a>
+        <div class="mt-4">
+        <button type="submit" class="btn btn-outline-danger" style="width:150px"> Delete</button>
+        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-dark border form-control" style="width:200px"> Back to list</a>
+        </div>
 
     </div>
 </form>
