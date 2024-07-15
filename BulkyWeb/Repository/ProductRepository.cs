@@ -4,7 +4,7 @@ using BulkyWeb.Repository.IRepository;
 
 namespace BulkyWeb.Repository
 {
-    public class ProductRepository : Repository<Product>, IProductRepository 
+    public class ProductRepository : Repository<Product>, IProductRepository
     {
         private ApplicationDbContext _db;
         public ProductRepository(ApplicationDbContext db) : base(db)

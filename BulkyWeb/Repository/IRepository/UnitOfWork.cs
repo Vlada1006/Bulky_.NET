@@ -4,7 +4,7 @@ namespace BulkyWeb.Repository.IRepository
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public ICategoryRepository Category {  get; private set; }
+        public ICategoryRepository Category { get; private set; }
 
         public IProductRepository Product { get; private set; }
 

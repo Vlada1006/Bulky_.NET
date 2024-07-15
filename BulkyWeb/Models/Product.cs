@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BulkyWeb.Models
 {
@@ -7,28 +9,38 @@ namespace BulkyWeb.Models
         [Key]
         public int ProductId { get; set; }
         [Required]
+        [MaxLength(30)]
         public string Title { get; set; }
         public string Description { get; set; }
         [Required]
+        [MaxLength(30)]
         public string ISBN { get; set; }
         [Required]
+        [MaxLength(30)]
         public string Author { get; set; }
-
         [Required]
-        [Display(Name ="List Price")]
+
+        [Display(Name = "List Price")]
         public double ListPrice { get; set; }
 
         [Required]
         [Display(Name = "Price for 1-50")]
+        [Range(1, 1000)]
         public double Price { get; set; }
 
         [Required]
         [Display(Name = "Price for 50+")]
+        [Range(1, 1000)]
         public double Price50 { get; set; }
+
         [Required]
         [Display(Name = "Price for 100+")]
+        [Range(1, 1000)]
         public double Price100 { get; set; }
 
+        public int CategoryId { get; set; }
+        [ForeignKey("CategoryId")]
+        public Category Category { get; set; }
 
     }
 }

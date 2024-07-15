@@ -7,54 +7,11 @@
 namespace BulkyWeb.Migrations
 {
     /// <inheritdoc />
-    public partial class AddProductTableToDb : Migration
+    public partial class SeedProductTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Categories",
-                type: "nvarchar(30)",
-                maxLength: 30,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
-
-            migrationBuilder.CreateTable(
-                name: "Cars",
-                columns: table => new
-                {
-                    CarId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    CarName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CarColor = table.Column<string>(type: "nvarchar(max)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Cars", x => x.CarId);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Products",
-                columns: table => new
-                {
-                    ProductId = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ISBN = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Author = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ListPrice = table.Column<double>(type: "float", nullable: false),
-                    Price = table.Column<double>(type: "float", nullable: false),
-                    Price50 = table.Column<double>(type: "float", nullable: false),
-                    Price100 = table.Column<double>(type: "float", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Products", x => x.ProductId);
-                });
-
             migrationBuilder.InsertData(
                 table: "Products",
                 columns: new[] { "ProductId", "Author", "Description", "ISBN", "ListPrice", "Price", "Price100", "Price50", "Title" },
@@ -72,20 +29,35 @@ namespace BulkyWeb.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Cars");
+            migrationBuilder.DeleteData(
+                table: "Products",
+                keyColumn: "ProductId",
+                keyValue: 1);
 
-            migrationBuilder.DropTable(
-                name: "Products");
+            migrationBuilder.DeleteData(
+                table: "Products",
+                keyColumn: "ProductId",
+                keyValue: 2);
 
-            migrationBuilder.AlterColumn<string>(
-                name: "Name",
-                table: "Categories",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(30)",
-                oldMaxLength: 30);
+            migrationBuilder.DeleteData(
+                table: "Products",
+                keyColumn: "ProductId",
+                keyValue: 3);
+
+            migrationBuilder.DeleteData(
+                table: "Products",
+                keyColumn: "ProductId",
+                keyValue: 4);
+
+            migrationBuilder.DeleteData(
+                table: "Products",
+                keyColumn: "ProductId",
+                keyValue: 5);
+
+            migrationBuilder.DeleteData(
+                table: "Products",
+                keyColumn: "ProductId",
+                keyValue: 6);
         }
     }
 }
