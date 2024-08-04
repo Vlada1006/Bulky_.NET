@@ -8,17 +8,18 @@ function loadDataTable() {
         "ajax": { url: '/admin/product/getall' },
         "columns":
         [
-                { data: 'title', "width" : "25%" },
-                { data: 'isbn', "width": "15%" },
-                { data: 'listPrice', "width": "10%" },
+                { data: 'title', "width": "25%" },
                 { data: 'author', "width": "15%" },
+                { data: 'isbn', "width": "15%" },
+                { data: 'listPrice', "width": "10%" },               
                 { data: 'category.name', "width": "10%" },
                 {
                     data: 'productId',
                     'render': function (data) {
                         return `<div class="w-75 btn-group" role="group">
                         <a href="/admin/product/upsert?productId=${data}" class="btn btn-outline-dark mx-2"><i class="bi bi-pencil"></i> Edit</a>
-                        <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-outline-danger mx-2"><i class="bi bi-trash"></i> Delete</a>                       
+                        <a onClick=Delete('/admin/product/delete?productId=${data}') class="btn btn-outline-danger mx-2"><i class="bi bi-trash"></i> Delete</a>
+                        
                         </div>`
                     },
                     "width": "25%"
@@ -27,15 +28,16 @@ function loadDataTable() {
 
     });   
 }
+
 function Delete(url) {
     Swal.fire({
-        title: "Are you sure?",
+        title: 'Are you sure?',
         text: "You won't be able to revert this!",
-        icon: "warning",
+        icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: "#3085d6",
-        cancelButtonColor: "#d33",
-        confirmButtonText: "Yes, delete it!"
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
@@ -47,7 +49,6 @@ function Delete(url) {
                 }
             })
         }
-    });
+    })
 }
-
 
