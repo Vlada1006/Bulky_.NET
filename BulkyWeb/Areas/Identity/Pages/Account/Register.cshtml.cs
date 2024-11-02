@@ -11,6 +11,7 @@ using System.Text.Encodings.Web;
 using System.Threading;
 using System.Threading.Tasks;
 using BulkyWeb.Models;
+using BulkyWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -33,6 +34,7 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<IdentityUser> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
         private readonly IEmailSender _emailSender;
+        private readonly IUnitOfWork _unitOfWork;
 
         public RegisterModel(
             UserManager<IdentityUser> userManager,
@@ -40,15 +42,17 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
             IUserStore<IdentityUser> userStore,
             SignInManager<IdentityUser> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUnitOfWork unitOfWork)
         {
+            _unitOfWork = unitOfWork;
             _roleManager = roleManager;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _emailSender = emailSender;            
         }
 
         /// <summary>
@@ -113,7 +117,9 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
             public string? City { get; set; }
             public string? PostCode { get; set; }
             public string? PhoneNumber { get; set; }
-           
+            public string? CompanyId { get; set; }
+            public IEnumerable<SelectListItem> CompanyList { get; set; }
+
         }
 
 
@@ -132,6 +138,11 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                 {
                     Text = i,
                     Value = i
+                }),
+                CompanyList = _unitOfWork.Company.GetAll().Select(i=> new SelectListItem
+                {
+                    Text = i.Name,
+                    Value= i.Id.ToString()
                 })
             };
 
@@ -154,6 +165,11 @@ namespace BulkyWeb.Areas.Identity.Pages.Account
                 user.Address = Input.Address;
                 user.PhoneNumber = Input.PhoneNumber;
                 user.PostCode = Input.PostCode;
+
+                if(Input.Role == SD.Role_Company)
+                {
+                    user.CompanyId = Int32.Parse(Input.CompanyId);
+                }
 
                 var result = await _userManager.CreateAsync(user, Input.Password);
 

@@ -34,7 +34,7 @@ namespace BulkyWeb.Data
             modelBuilder.Entity<Company>().HasData(
                 new Company { Id = 1, Name = "Tech World", StreetAddress = "123 Wood Lane", City = "Birmingham", State = null, PostalCode = "B20 15AD", PhoneNumber = "07434476917" },
                 new Company { Id = 2, Name = "Parle", StreetAddress = "88 Book Street", City = "Leeds", State = "North Leeds", PostalCode = "PR2 7DY", PhoneNumber = "07566654111" }
-
+            
                 );
 
             modelBuilder.Entity<Product>().HasData(

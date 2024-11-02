@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using BulkyWeb.Models.ViewModels;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Build.Framework;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BulkyWeb.Models
 {
@@ -12,6 +15,10 @@ namespace BulkyWeb.Models
         public string? City { get; set; }
         public string? State { get; set; }
         public string? PostCode { get; set; }
+        public int? CompanyId { get; set; }
+        [ForeignKey("CompanyId")]
+        [ValidateNever]
+        public Company Company { get; set; }
 
 
     }
