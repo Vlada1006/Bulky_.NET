@@ -1,5 +1,4 @@
-﻿using BulkyWeb.Models.ViewModels;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Build.Framework;
 using System.ComponentModel.DataAnnotations.Schema;

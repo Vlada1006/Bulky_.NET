@@ -1,6 +1,5 @@
 ﻿using BulkyWeb.Data;
 using BulkyWeb.Models;
-using BulkyWeb.Models.ViewModels;
 using BulkyWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;

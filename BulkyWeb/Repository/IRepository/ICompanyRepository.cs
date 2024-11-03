@@ -1,5 +1,4 @@
 ﻿using BulkyWeb.Models;
-using BulkyWeb.Models.ViewModels;
 
 namespace BulkyWeb.Repository.IRepository
 {
