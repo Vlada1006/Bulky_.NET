@@ -49,12 +49,14 @@ namespace BulkyWeb.Areas.Customer.Controllers
             if (cartFromDb != null)
             {
                 cartFromDb.Count += shoppingCart.Count;
-                _unitOfWork.ShoppingCart.Update(cartFromDb);
+                _unitOfWork.ShoppingCart.Update(cartFromDb);                
             }
             else
             {
                 _unitOfWork.ShoppingCart.Add(shoppingCart);
-            }           
+            }
+
+            TempData["success"] = "Cart updated successfully";
             _unitOfWork.Save();
           
 
