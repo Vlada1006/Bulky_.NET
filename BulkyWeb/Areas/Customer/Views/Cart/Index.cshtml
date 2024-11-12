@@ -30,7 +30,11 @@
                         </div>
                         <div class="col-12 col-lg-6 pt-md-3">
                             <h5 class="text-uppercase text-secondary"><strong>@item.Product.Title</strong></h5>
-                            <p><small>@Html.Raw(@item.Product.Description)</small></p>
+                                @{
+                                    var description = @item.Product.Description;
+                                    var truncatedDescription = description.Length > 190 ? description.Substring(0, 190) + "..." : description;
+                                }
+                                <p><small>@Html.Raw(truncatedDescription)</small></p>
                         </div>
                         <div class="col-12  col-lg-5 text-center row">
                             <div class="col-3 text-md-right pt-2 pt-md-4">
