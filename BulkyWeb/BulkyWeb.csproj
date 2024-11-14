@@ -23,6 +23,7 @@
     </PackageReference>
 	  <FrameworkReference Include="Microsoft.AspNetCore.App"></FrameworkReference>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.6" />
+    <PackageReference Include="Stripe.net" Version="47.0.0" />
   </ItemGroup>
 
   <ItemGroup>
