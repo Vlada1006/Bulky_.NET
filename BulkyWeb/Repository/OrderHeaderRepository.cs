@@ -35,11 +35,12 @@ namespace BulkyWeb.Repository
         public void UpdateStripePaymentID(int id, string sessionId, string paymentIntentId = null)
         {
             var orderFromDb = _db.orderHeaders.FirstOrDefault(u => u.Id == id);
+
             if (!string.IsNullOrEmpty(sessionId))
             {
                 orderFromDb.SessionId = sessionId;
             }
-            if (string.IsNullOrEmpty(paymentIntentId))
+            if (!string.IsNullOrEmpty(paymentIntentId))
             {
                 orderFromDb.PaymentIntentId = paymentIntentId;
                 orderFromDb.PaymentDate = DateTime.Now;

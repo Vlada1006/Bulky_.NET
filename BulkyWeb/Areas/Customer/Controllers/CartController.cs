@@ -154,8 +154,8 @@ namespace BulkyWeb.Areas.Customer.Controllers
                     };
                     options.LineItems.Add(SessionLineItem);
                 }
-                var service = new Stripe.Checkout.SessionService();
-                Session session = service.Create(options);
+                var service = new SessionService();
+				Session session = service.Create(options);
                 _unitOfWork.OrderHeader.UpdateStripePaymentID(ShoppingCartVM.OrderHeader.Id, session.Id, session.PaymentIntentId);
                 _unitOfWork.Save();
                 Response.Headers.Add("Location", session.Url);
@@ -176,6 +176,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
                 if(session.PaymentStatus.ToLower() == "paid")
                 {
+                    orderHeader.PaymentIntentId = session.PaymentIntentId;
                     _unitOfWork.OrderHeader.UpdateStripePaymentID(id, session.Id, session.PaymentIntentId);
                     _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _unitOfWork.Save();

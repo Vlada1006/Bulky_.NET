@@ -1,9 +1,11 @@
 ﻿using BulkyBook.Models;
+using BulkyWeb.Models;
 using BulkyWeb.Models.ViewModels;
 using BulkyWeb.Repository.IRepository;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Authorization.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
+using Stripe.Checkout;
 using System.Diagnostics;
 using System.Security.Claims;
 
