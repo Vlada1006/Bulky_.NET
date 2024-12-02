@@ -25,7 +25,7 @@ namespace BulkyWeb.Repository
             var orderFromDb = _db.orderHeaders.FirstOrDefault(u=>u.Id == id);
             if (orderFromDb != null) {
                 orderFromDb.OrderStatus = orderStatus;
-                if (string.IsNullOrEmpty(paymentStatus))
+                if (!string.IsNullOrEmpty(paymentStatus))
                 { 
                     orderFromDb.PaymentStatus = paymentStatus;
                 }
