@@ -181,6 +181,7 @@ namespace BulkyWeb.Areas.Customer.Controllers
                     _unitOfWork.OrderHeader.UpdateStatus(id, SD.StatusApproved, SD.PaymentStatusApproved);
                     _unitOfWork.Save();
                 }
+                HttpContext.Session.Clear();
             }
             List<ShoppingCart> shoppingCarts = _unitOfWork.ShoppingCart
                 .GetAll(u=>u.ApplicationUserId == orderHeader.ApplicationUserId).ToList();
@@ -202,9 +203,11 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult Minus(int shoppingCartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingCartId == shoppingCartId);
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingCartId == shoppingCartId, tracked: true);
             if (cartFromDb.Count <= 1)
             {
+                HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.
+                    GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count() - 1);
                 _unitOfWork.ShoppingCart.Remove(cartFromDb);
             }
             else
@@ -219,7 +222,9 @@ namespace BulkyWeb.Areas.Customer.Controllers
 
         public IActionResult Remove(int shoppingCartId)
         {
-            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingCartId == shoppingCartId);
+            var cartFromDb = _unitOfWork.ShoppingCart.Get(u => u.ShoppingCartId == shoppingCartId, tracked: true);
+            HttpContext.Session.SetInt32(SD.SessionCart, _unitOfWork.ShoppingCart.
+                   GetAll(u => u.ApplicationUserId == cartFromDb.ApplicationUserId).Count() - 1);
             _unitOfWork.ShoppingCart.Remove(cartFromDb);
             _unitOfWork.Save();
             TempData["success"] = "Cart updated successfully";

@@ -1,6 +1,7 @@
 ﻿using BulkyWeb.Data;
+using BulkyWeb.Repository.IRepository;
 
-namespace BulkyWeb.Repository.IRepository
+namespace BulkyWeb.Repository
 {
     public class UnitOfWork : IUnitOfWork
     {

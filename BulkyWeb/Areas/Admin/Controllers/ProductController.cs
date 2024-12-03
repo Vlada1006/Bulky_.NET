@@ -2,6 +2,7 @@
 using BulkyWeb.Models;
 using BulkyWeb.Models.ViewModels;
 using BulkyWeb.Repository.IRepository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.CodeAnalysis;
@@ -10,6 +11,7 @@ using Microsoft.CodeAnalysis;
 namespace BulkyWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = SD.Role_Admin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
