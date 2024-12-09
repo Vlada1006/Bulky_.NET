@@ -14,11 +14,36 @@ function loadDataTable() {
                 { data: 'company.name', "width": "10%" },               
                 { data: 'role', "width": "10%" },
                 {
-                    data: 'id',
+                    data: { id: "id", lockoutEnd: "lockoutEnd" },
                     'render': function (data) {
-                        return `<div class="w-75 btn-group" role="group">
-                        <a href="/admin/user/upsert?Id=${data}" class="btn btn-outline-dark mx-2"><i class="bi bi-pencil"></i> Edit</a>                                              
-                        </div>`
+                        var today = new Date().getDate();
+                        var lockout = new Date(data.lockoutEnd).getTime();
+
+                        if (lockout > today) {
+                            return `
+                            <div class="text-center">
+                                
+                                <a class="btn btn-success text-white" style="cursor:pointer; width:100px;">
+                                    <i class="bi bi-unlock-fill"></i> UnLock
+                                </a>
+                                <a class="btn btn-danger text-white" style="cursor:pointer; width:150px;">
+                                     <i class="bi bi-pencil-square"></i> Permission
+                                </a>
+                            </div>
+                        `
+                        } else {
+                            return `
+                            <div class="text-center">
+                            <a class="btn btn-danger text-white" style="cursor:pointer; width:100px;">
+                                    <i class="bi bi-lock-fill"></i> Lock
+                                </a>
+                                 <a class="btn btn-danger text-white" style="cursor:pointer; width:150px;">
+                                    <i class="bi bi-pencil-square"></i> Permission
+                                </a>
+                            </div>
+                        `
+                        }
+
                     },
                     "width": "25%"
                 }
